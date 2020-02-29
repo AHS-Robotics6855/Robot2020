@@ -8,10 +8,14 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.commands.InitSpinCommand;
-import frc.robot.subsystems.ColorSpinSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.subsystems.DriveTrainSubsystem;
+import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ShooterSubsystem;
+import frc.robot.commands.ArcadeDrive;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -21,10 +25,18 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final ColorSpinSubsystem m_exampleSubsystem = new ColorSpinSubsystem();
 
-  private final InitSpinCommand m_autoCommand = new InitSpinCommand(m_exampleSubsystem);
-
+  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final Command m_autoCommand = null;
+  
+  //Subsystems
+  private DriveTrainSubsystem m_driveSub = new DriveTrainSubsystem();
+  private ShooterSubsystem m_shooterSub = new ShooterSubsystem();
+  private IntakeSubsystem m_intakeSub = new IntakeSubsystem();
+  
+  //Joysticks
+  private Joystick stick = new Joystick(0);
+  private Joystick stick2 = new Joystick(1);
 
 
   /**
@@ -42,6 +54,25 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+    
+    //Buttons
+    JoystickButton b_intake = new JoystickButton(stick2, 1);
+    JoystickButton b_reverse_intake = new JoystickButton(stick2, 3);
+    JoystickButton b_fire = new JoystickButton(stick, 1);
+
+    //Drive
+    m_driveSub.setDefaultCommand(new ArcadeDrive(m_driveSub, stick));
+
+    //Intake
+    b_intake.whenPressed(m_intakeSub::spinForward, m_intakeSub);
+    b_intake.whenReleased(m_intakeSub::stop, m_intakeSub);
+    b_reverse_intake.whenPressed(m_intakeSub::spinBackward, m_intakeSub);
+    b_reverse_intake.whenReleased(m_intakeSub::stop, m_intakeSub);
+
+    //Shooter
+    b_fire.whenPressed(m_shooterSub::shoot, m_shooterSub);
+    b_fire.whenReleased(m_shooterSub::stop, m_shooterSub);
+ 
   }
 
 

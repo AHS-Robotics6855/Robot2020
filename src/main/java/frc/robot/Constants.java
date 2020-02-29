@@ -25,10 +25,10 @@ public final class Constants {
     public static final int JOYSTICK_Z = 2;
 
     //DriveTrain Motors (CAN Spark)
-    public static final int DRIVE_Motor_ID = 2; //Back right
-    public static final int DRIVE_Motor_ID2 = 3; //Front right?
-    public static final int DRIVE_Motor_ID3 = 4; //
-    public static final int DRIVE_Motor_ID4 = 5;
+    public static final int DRIVE_Motor_ID = 2;  //Left  front
+    public static final int DRIVE_Motor_ID2 = 3; //Left  back
+    public static final int DRIVE_Motor_ID3 = 4; //Right front
+    public static final int DRIVE_Motor_ID4 = 5; //Right back
 
     //Shooter Motors (Victor SPX)
     public static final int SHOOTER_Motor_ID1 = 6;

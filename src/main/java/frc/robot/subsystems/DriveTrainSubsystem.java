@@ -1,50 +1,37 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import frc.robot.commands.ArcadeDrive;
+import frc.robot.Constants;
+
 
 public class DriveTrainSubsystem extends SubsystemBase{
-    DifferentialDrive drivesystem;
-    SpeedController m_left, m_right;
     
-    private CANSparkMax left1;
-    private CANSparkMax right1;
-    private CANSparkMax left2;
-    private CANSparkMax right2;
+    private DifferentialDrive m_drivesystem;
+    private CANSparkMax m_leftFront, m_leftBack, m_rightFront, m_rightBack;
 
     public DriveTrainSubsystem(){
-        left1 = new CANSparkMax(Constants.DRIVE_Motor_ID, MotorType.kBrushless);
-		left2 = new CANSparkMax(Constants.DRIVE_Motor_ID2, MotorType.kBrushless);
-		right1= new CANSparkMax(Constants.DRIVE_Motor_ID3, MotorType.kBrushless);		
-        right2 = new CANSparkMax(Constants.DRIVE_Motor_ID4, MotorType.kBrushless);
+        m_leftFront  = new CANSparkMax(Constants.DRIVE_Motor_ID, MotorType.kBrushless);
+		m_leftBack  = new CANSparkMax(Constants.DRIVE_Motor_ID2, MotorType.kBrushless);
+		m_rightFront = new CANSparkMax(Constants.DRIVE_Motor_ID3, MotorType.kBrushless);		
+        m_rightBack = new CANSparkMax(Constants.DRIVE_Motor_ID4, MotorType.kBrushless);
         
-        left2.follow(left1);
-        right2.follow(right1);
+        m_leftBack.follow(m_leftFront);
+        m_rightBack.follow(m_rightFront);
         
-        left2.setInverted(true);
-        right2.setInverted(true);
+        m_leftBack.setInverted(true);
+        m_rightBack.setInverted(true);
 
-        //setDefaultCommand(new ArcadeDrive());
-
-
-		//m_left = new SpeedControllerGroup(m_leftMotor, m_leftMotor2);
-		//m_right = new SpeedControllerGroup(m_rightMotor, m_rightMotor2);
-
-		//m_drive = new DifferentialDrive(m_left, m_right);
-        drivesystem = new DifferentialDrive(left1, right1);
-        drivesystem.setRightSideInverted(false);
+        m_drivesystem = new DifferentialDrive(m_leftFront, m_rightFront);
+        m_drivesystem.setRightSideInverted(false);
     }
     public void arcadeDrive(double x, double y)
 	{
-		drivesystem.arcadeDrive(x*0.5, y*0.75);
+		m_drivesystem.arcadeDrive(x*0.5, y*0.75);
 	}
 
     public void periodic() {
-        // Set the default command for a subsystem here.
     }
 }

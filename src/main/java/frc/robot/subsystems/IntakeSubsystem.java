@@ -1,5 +1,5 @@
 /*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
 /* Open Source Software - may be modified and shared by FRC teams. The code   */
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
@@ -12,31 +12,34 @@ import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
 
-public class ShooterSubsystem extends SubsystemBase {
+public class IntakeSubsystem extends SubsystemBase {
 
-  private VictorSPX m_top, m_bottom;
+  private VictorSPX m_back, m_front;
 
-  public ShooterSubsystem(){
-
-    m_top = new VictorSPX(10);
-    m_bottom = new VictorSPX(6);
-    
+  public IntakeSubsystem() {
+    m_back = new VictorSPX(9);
+    m_front = new VictorSPX(7);
   }
 
-  public void shoot()
+  public void spinBackward()
   {
-    m_top.set     (VictorSPXControlMode.PercentOutput, .9);
-    m_bottom.set  (VictorSPXControlMode.PercentOutput, .9);
+    m_back.set  (VictorSPXControlMode.PercentOutput,  1);
+    m_front.set (VictorSPXControlMode.PercentOutput, -1);
+  }
+
+  public void spinForward()
+  {
+    m_back.set  (VictorSPXControlMode.PercentOutput, -1);
+    m_front.set (VictorSPXControlMode.PercentOutput,  1);
   }
 
   public void stop()
   {
-    m_top.set     (VictorSPXControlMode.PercentOutput, 0);
-    m_bottom.set  (VictorSPXControlMode.PercentOutput, 0);
+    m_back.set(VictorSPXControlMode.PercentOutput, 0);
+    m_front.set(VictorSPXControlMode.PercentOutput, 0);
   }
 
   @Override
   public void periodic() {
   }
-
 }

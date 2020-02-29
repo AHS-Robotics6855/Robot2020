@@ -7,20 +7,9 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.InitSpinCommand;
-import frc.robot.commands.RevSpin;
-import frc.robot.commands.SpinCommand;
-import frc.robot.commands.StopMotorCommand;
-import frc.robot.subsystems.ColorSpinSubsystem;
-import frc.robot.subsystems.DriveTrainSubsystem;
-import frc.robot.subsystems.RevIntakeSubsystem;
-import frc.robot.subsystems.ShooterSubsystem;
-import frc.robot.commands.ArcadeDrive;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -32,17 +21,7 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
-
-  private ColorSpinSubsystem spin;
-
-  public static ShooterSubsystem shoot;
-  public static Joystick stick;
-  public static Joystick stick2;
-  public static DriveTrainSubsystem drive;
-  //public static IntakeSubsystem intake;
-  public static RevIntakeSubsystem rev;
   
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -52,39 +31,6 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
-
-    //Joysticks
-    stick = new Joystick(0);
-    stick2 = new Joystick(1);
-
-    //Buttons
-    JoystickButton b_intake = new JoystickButton(stick2, 1);
-    JoystickButton b_reverse_intake = new JoystickButton(stick2, 3);
-    JoystickButton b_fire = new JoystickButton(stick, 1);
-    
-
-    spin = new ColorSpinSubsystem();
-
-    drive = new DriveTrainSubsystem();
-    drive.setDefaultCommand(new ArcadeDrive(drive));
-
-    shoot = new ShooterSubsystem();
-    b_fire.whenPressed(new SpinCommand(shoot, 10, 6));
-    b_fire.whenReleased(new StopMotorCommand(shoot, 10, 6));
-
-    //intake = new IntakeSubsystem();
-    //intake = new IntakeSubsystem();
-    //b_reverse_intake.whenPressed(new IntakeCommand(intake));
-    //b_reverse_intake.whenReleased(new StopMotorCommand(intake, 9, 7));
-
-    //b_reverse_intake.whenPressed(new SpinCommand(intake, 9, 7));
-    //b_reverse_intake.whenReleased(new StopMotorCommand(intake, 9, 7));
-
-    rev = new RevIntakeSubsystem();
-    b_intake.whenPressed(new RevSpin(rev, 1));
-    b_intake.whenReleased(new StopMotorCommand(rev, 9, 7));
-    b_reverse_intake.whenPressed(new RevSpin(rev, -1));
-    b_reverse_intake.whenReleased(new StopMotorCommand(rev, 9, 7));
 
   }
 
