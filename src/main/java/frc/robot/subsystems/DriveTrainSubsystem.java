@@ -40,4 +40,8 @@ public class DriveTrainSubsystem extends SubsystemBase{
 
     public void periodic() { }
 
+    public void Distance(){
+
+    }
+
 }

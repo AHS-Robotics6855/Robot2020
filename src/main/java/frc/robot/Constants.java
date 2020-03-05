@@ -17,7 +17,7 @@ package frc.robot;
  */
 public final class Constants {
     //Color spin motor (CAN Spark)
-    public static final int COLOR_SPIN_MOTOR_ID = 1;
+    public static final int COLOR_SPIN_MOTOR_ID = 12;
 
     //Joystick axis
     public static final int JOYSTICK_X = 0;
@@ -30,9 +30,19 @@ public final class Constants {
     public static final int DRIVE_Motor_ID3 = 4; //Right front
     public static final int DRIVE_Motor_ID4 = 5; //Right back
 
-    //Shooter Motors (Victor SPX)
-    public static final int SHOOTER_Motor_ID1 = 6;
-    public static final int SHOOTER_Motor_ID2 = 7;
-    public static final int SHOOTER_Motor_ID3 = 8;
-    public static final int SHOOTER_Motor_ID4 = 9;
+    //Intake
+    public static final int INTAKE_1 = 6;
+    public static final int INTAKE_2 = 9;
+    public static final int INTAKE_ROLLER = 11;
+
+    //Shooter
+    public static final int SHOOTER_1 = 8;
+    public static final int SHOOTER_2 = 7;
+
+    //Pneumatics Motors
+
+    //Lift
+    public static final int LIFT = 10;
+    public static final int WINCH = 13;
+    public static final int LIMIT = 0;
 }

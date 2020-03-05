@@ -1,28 +1,30 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpiutil.math.MathUtil;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.LimeLightSubsystem;
 
-public class TargetGoal extends CommandBase
+public class TimedTargetGoal extends CommandBase
 {
     protected LimeLightSubsystem m_limeSub;
     protected DriveTrainSubsystem m_drive;
-    protected JoystickButton m_exit_button;
 
-    public TargetGoal(LimeLightSubsystem lime, DriveTrainSubsystem drive, JoystickButton exit)
+    protected long m_time;
+    protected long m_endtime;
+
+    public TimedTargetGoal(LimeLightSubsystem lime, DriveTrainSubsystem drive, long time)
     {
         m_limeSub = lime;
         m_drive = drive;
-        m_exit_button = exit;
         addRequirements(m_limeSub, m_drive);
+        m_time = time;
     }
 
     @Override
     public void initialize() {
         m_limeSub.lightOn();
+        m_endtime = System.currentTimeMillis() + m_time;
     }
 
     public void execute()
@@ -57,7 +59,7 @@ public class TargetGoal extends CommandBase
 
     public boolean isFinished()
     {
-        return !(m_exit_button.get());
+        return System.currentTimeMillis() >= m_endtime;
     }
 
     @Override

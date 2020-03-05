@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+
 import com.ctre.phoenix.motorcontrol.VictorSPXControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
@@ -18,15 +20,15 @@ public class ShooterSubsystem extends SubsystemBase {
 
   public ShooterSubsystem(){
 
-    m_top = new VictorSPX(10);
-    m_bottom = new VictorSPX(6);
+    m_bottom = new VictorSPX(Constants.SHOOTER_1);
+    m_top = new VictorSPX(Constants.SHOOTER_2);
     
   }
 
   public void shoot()
   {
-    m_top.set     (VictorSPXControlMode.PercentOutput, .9);
-    m_bottom.set  (VictorSPXControlMode.PercentOutput, .9);
+    m_top.set     (VictorSPXControlMode.PercentOutput, 0.65);
+    m_bottom.set  (VictorSPXControlMode.PercentOutput, 0.85);
   }
 
   public void stop()

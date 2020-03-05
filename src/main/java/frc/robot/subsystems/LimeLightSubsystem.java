@@ -26,6 +26,17 @@ public class LimeLightSubsystem extends SubsystemBase {
     tx = m_limelightTable.getEntry("tx");
     ty = m_limelightTable.getEntry("ty");
     ta = m_limelightTable.getEntry("ta");
+    lightOff();
+  }
+
+  public void lightOff()
+  {
+    m_limelightTable.getEntry("ledMode").setNumber(1);
+  }
+
+  public void lightOn()
+  {
+    m_limelightTable.getEntry("ledMode").setNumber(3);
   }
 
   public double getAngleX()
