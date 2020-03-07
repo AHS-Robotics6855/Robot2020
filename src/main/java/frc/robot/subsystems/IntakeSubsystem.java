@@ -28,14 +28,14 @@ public class IntakeSubsystem extends SubsystemBase {
   {
     m_back.set  (VictorSPXControlMode.PercentOutput,  0.85);
     m_front.set (VictorSPXControlMode.PercentOutput, -0.85);
-    m_extend.set(VictorSPXControlMode.PercentOutput,  0.4);
+    m_extend.set(VictorSPXControlMode.PercentOutput,  0.40);
   }
   
   public void spinForward()
   {
     m_back.set  (VictorSPXControlMode.PercentOutput, -0.85);
     m_front.set (VictorSPXControlMode.PercentOutput,  0.85);
-    m_extend.set(VictorSPXControlMode.PercentOutput,  -0.4);
+    m_extend.set(VictorSPXControlMode.PercentOutput, -0.40);
   }
 
   public void stop()

@@ -35,13 +35,13 @@ public class TargetGoal extends CommandBase
         double max_speed_s = 0.4, min_speed_s = 0.15;
         double max_speed_d = 0.5, min_speed_d = 0.3;
 
-        if(Math.abs(tx) > 1)
+        if(Math.abs(tx) > 0.7)
         {
             //Use min and max turn speeds
             steering_adjust = Math.copySign(MathUtil.clamp(Math.abs(-0.05 * tx), min_speed_s, max_speed_s), -tx);
         }
 
-        if(Math.abs(ty) > 2)
+        if(Math.abs(ty) > 1.5)
         {
             //Use min and max drive speeds
             distance_adjust = Math.copySign(MathUtil.clamp(Math.abs(-0.1 * ty), min_speed_d, max_speed_d), -ty);

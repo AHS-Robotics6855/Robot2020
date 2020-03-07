@@ -50,9 +50,9 @@ public class RobotContainer {
   private LiftSubsystem m_liftSub = new LiftSubsystem();
   
   private final Command m_autoCommand = new SequentialCommandGroup(
-    new TimedTank(m_driveSub,  0.4,  0.4, 2000),
+    new TimedTank(m_driveSub,  -0.4,  -0.4, 1000),
     new TimedTargetGoal(m_limeSub, m_driveSub, 3000),
-    new AutoShoot(m_shooterSub, m_intakeSub, m_limeSub, 15000)
+    new AutoShoot(m_shooterSub, m_intakeSub, m_limeSub, 8000)
   );
   //DriveStraightForXatYCommand();
   
